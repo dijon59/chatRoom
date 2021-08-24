@@ -1,0 +1,35 @@
+{% extends 'chat/base.html' %}
+{% load bootstrap4 %}
+{% block body_block %}
+<div>
+    <div class="bg-secondary p-2 rounded">
+        <div style="display: flex; justify-content: space-between">
+            <h2 style="color: white">Chat Room</h2>
+        <div style="padding-top: 5px">
+            {% if user.is_authenticated%}<span style="color: white"> Hi</span><strong style="color: white"> {{ user.username }}</strong>{% endif %}
+        </div>
+        </div>
+    </div>
+    <div  style="height: 560px; overflow: scroll; box-shadow: 0 2px 2px #ccc; background-color: white">
+        {% for message in message_list %}
+        <div class="p-2 mt-4">
+            <i style="color: grey" class="far fa-user-circle"></i>
+            <strong>{{ message.user.username }}</strong> - <small><span style="color: grey">{{ message.created_at }}</span></small>
+            {% if user == message.user %}
+            <a style="color: black; font-size: 12px; cursor: pointer" href="{% url 'chat:update-message' pk=message.id %}"><i class="fas fa-edit"></i></a>
+            <a style="color: black; font-size: 12px; cursor: pointer" href="{% url 'chat:delete-message' pk=message.id %}"><i class="fas fa-trash-alt"></i></a>
+            {% endif %}
+            <div><small>{{ message.message }}</small></div>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="d-grid gap-2">
+        <a class="btn btn-outline-secondary" type="button" href="{% url 'chat:create-message' %}">send message</a>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+</div>
+{% endblock %}

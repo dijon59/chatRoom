@@ -1,0 +1,13 @@
+{% extends 'chat/base.html' %}
+{% load bootstrap4 %}
+{% block body_block %}
+<div class="shadow p-3 rounded mt-5">
+    <form method="post">
+    {% csrf_token %}
+        <h1>Login</h1>
+    {% bootstrap_form form %}
+        <br>
+    <input class='btn btn-outline-secondary' type="submit" value="Login">
+</form>
+</div>
+{% endblock %}
