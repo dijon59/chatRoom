@@ -27,6 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY', '')
+EMAIL_HOST_USER_API_KEY = os.getenv('EMAIL_HOST_USER_API_KEY', 'apikey')
+
+# sendgrid configuration
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = EMAIL_HOST_USER_API_KEY
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Application definition
 

@@ -6,6 +6,7 @@ from django.urls import reverse
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
+    is_viewed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
